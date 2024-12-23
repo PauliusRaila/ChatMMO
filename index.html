@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | ChatMMO</title>
+    <title>Moonies</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="manifest" href="manifest.webmanifest">
@@ -16,16 +16,24 @@
         font-family: 'GetShow';
         font-size: 48px;
         text-align: center;
-        margin-bottom: 20px;
-        color: #333;
+        color: white;
+        position: absolute;
+        width: 100%;
+        top: 20px;
+        z-index: 1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        background: transparent;
+      }
+      body {
+        background: #000;
       }
     </style>
   </head>
   <body>
     <div id="unity-container">
-      <div id="custom-title">MoonieS</div>
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
+        <div id="custom-title">MoonieS</div>
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
@@ -45,6 +53,7 @@
       var loadingBar = document.querySelector("#unity-loading-bar");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var warningBanner = document.querySelector("#unity-warning");
+      var customTitle = document.querySelector("#custom-title");
 
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
@@ -94,6 +103,7 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+          customTitle.style.display = "none";
         }).catch((message) => {
           alert(message);
         });
